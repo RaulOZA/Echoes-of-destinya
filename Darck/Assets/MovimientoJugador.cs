@@ -33,7 +33,13 @@ public class MovimientoJugador : MonoBehaviour
     {
         rigidbody2 = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator not found on this GameObject.");
+        }
     }
+
 
     // Update is called once per frame
     private void Update()
@@ -55,29 +61,44 @@ public class MovimientoJugador : MonoBehaviour
     //Cambio en las fisicas para que funcione en equipos potentes y no potentes
     private void FixedUpdate()
     {
+        if (controladorSuelo == null)
+        {
+            Debug.LogError("controladorSuelo is not assigned.");
+            return;
+        }
+
         enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionesCaja, 0f, queEsSuelo);
         animator.SetBool("enSuelo", enSuelo);
 
-
-        //mover 
         Mover(movimientoHorizontal * Time.fixedDeltaTime, salto);
-
         salto = false;
-
-        
     }
+
 
     public void Attack()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            animator.SetBool("Attack", true);
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayAudio(AudioManager.instance.swing);
+            }
+            else
+            {
+                Debug.LogWarning("AudioManager instance is missing.");
+            }
+
+            if (animator != null)
+            {
+                animator.SetBool("Attack", true);
+            }
         }
-        else
+        else if (animator != null)
         {
             animator.SetBool("Attack", false);
         }
     }
+
 
     //Suavizado a la hora de acelerar o frenar y luego a la velocidad que queremos llegar y que tan rapido
     private void Mover (float mover, bool saltar)
