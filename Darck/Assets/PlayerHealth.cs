@@ -43,24 +43,36 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemigo") && !isInmune)
+        // Verificar si el jugador ha colisionado con un arma y no está en estado inmune.
+        if (collision.CompareTag("Weapon") && !isInmune)
         {
-            health -= collision.GetComponent<EnemigosGene>().damageToGive;
-            // Determinar la dirección del retroceso basado en la posición del enemigo
-            Vector2 knockbackDirection = transform.position - collision.transform.position;
-            knockbackDirection.Normalize(); // Asegurarse de que la dirección esté normalizada
-            StartCoroutine(ApplyKnockback(knockbackDirection));
+            // Obtener el script MovilidadEnemigo desde el objeto que tiene el collider.
+            MovilidadEnemigo enemigo = collision.GetComponentInParent<MovilidadEnemigo>();
 
-            StartCoroutine(Inmunity());
-
-            if (health <= 0)
+            if (enemigo != null)
             {
-                // Lógica para muerte o pantalla de game over
-                print("Has muerto");
-            }
+                // Aplicar daño al jugador según el daño del enemigo.
+                float damage = enemigo.damage;
+                health -= damage;
 
-            // Actualiza la barra de vida después de recibir daño
-            healthBar.value = health;
+                // Determinar la dirección del retroceso basado en la posición del arma.
+                Vector2 knockbackDirection = transform.position - collision.transform.position;
+                knockbackDirection.Normalize(); // Asegurarse de que la dirección esté normalizada
+                StartCoroutine(ApplyKnockback(knockbackDirection));
+
+                // Activar inmunidad temporal.
+                StartCoroutine(Inmunity());
+
+                // Verificar si la salud del jugador ha llegado a 0.
+                if (health <= 0)
+                {
+                    print("Has muerto");
+                }
+
+                // Actualizar la barra de vida después de recibir daño.
+                healthBar.value = health;
+            }
+           
         }
     }
 
