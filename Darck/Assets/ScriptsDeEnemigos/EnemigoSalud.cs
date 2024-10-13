@@ -26,7 +26,7 @@ public class EnemigoSalud : MonoBehaviour
 
             // Aplica la animación de recibir golpe
             animator.SetTrigger("RecibirGolpe");
-
+            AudioManager.instance.PlayAudio(AudioManager.instance.oscuroHit);
             // Aplica el retroceso según la posición del jugador
             Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
             GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
@@ -55,7 +55,7 @@ public class EnemigoSalud : MonoBehaviour
     {
         isDead = true; // Marca al enemigo como muerto
         animator.SetTrigger("MuerteEnemigo"); // Activa la animación de muerte
-
+        AudioManager.instance.PlayAudio(AudioManager.instance.oscuroDeath);
         // Espera a que la animación de muerte termine
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
