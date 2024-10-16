@@ -17,9 +17,12 @@ public class PlayerHealth : MonoBehaviour
     public float knockbackForce = 4f;   // Fuerza del retroceso
     public float knockbackDuration = 0.3f; // Duración del retroceso
     private Rigidbody2D rb; // Para controlar el movimiento del jugador
+    public bool isDead;
+    public GameObject gameOverImg;
 
     void Start()
     {
+        gameOverImg.SetActive(false);
         sprite = GetComponent<SpriteRenderer>();
         material = GetComponent<Blink>();
         health = maxHealth;
@@ -28,10 +31,15 @@ public class PlayerHealth : MonoBehaviour
         // Inicializa la barra de vida
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
+        if (!isDead)
+        {
+            gameOverImg.GetComponent<CanvasGroup>().alpha = 0.0f;
+        }
     }
 
     void Update()
     {
+        IsDead();
         if (health > maxHealth)
         {
             health = maxHealth;
@@ -56,11 +64,30 @@ public class PlayerHealth : MonoBehaviour
             if (health <= 0)
             {
                 // Lógica para muerte o pantalla de game over
+                Time.timeScale = 0;
+                gameOverImg.SetActive(true);
+                //Detener otros sonidos
+                AudioManager.instance.PlayAudio(AudioManager.instance.gameOver);
+                isDead = true;
                 print("Has muerto");
             }
 
             // Actualiza la barra de vida después de recibir daño
             healthBar.value = health;
+        }
+    }
+
+    public void IsDead()
+    {
+        if (isDead)
+        {
+            Time.timeScale = 0;
+            gameOverImg.SetActive(true);
+
+            if (gameOverImg.GetComponent<CanvasGroup>().alpha < 1f)
+            {
+                gameOverImg.GetComponent<CanvasGroup>().alpha += 0.005f;
+            }
         }
     }
 

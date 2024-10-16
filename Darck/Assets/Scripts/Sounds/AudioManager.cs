@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioMixer music, effects;
 
-    public AudioSource swing, oscuroDeath, oscuroHit;
+    public AudioSource swing, oscuroDeath, oscuroHit, mainMenu, gameOver;
 
     public static AudioManager instance;
 
@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-
+            DontDestroyOnLoad(gameObject);
         }
     }
 
