@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemigo
   - Weapon
+  - HealthItem
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Background
   - Foreground
   - Enemigos
-  - 
+  - HealthItem
   - 
   - 
   - 

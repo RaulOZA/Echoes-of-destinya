@@ -1,94 +1,100 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public Slider healthBar;  // Slider para la barra de vida
-    public float health;
-    public float maxHealth;
-    bool isInmune;
-    public float inmunityTime;
-    Blink material;
-    SpriteRenderer sprite;
-
-    // Valores para el retroceso
-    public float knockbackForce = 4f;   // Fuerza del retroceso
+    // Variables principales
+    public Slider healthBar;          // Barra de vida (UI)
+    public float health;              // Salud actual del jugador
+    public float maxHealth;           // Salud máxima del jugador
+    private bool isInmune;            // Estado de inmunidad
+    public float inmunityTime;        // Duración de la inmunidad
+    private SpriteRenderer sprite;    // Sprite del jugador
+    public GameObject gameOverImg;    // Imagen de Game Over
+    private Rigidbody2D rb;           // Rigidbody del jugador para retroceso
+    public float knockbackForce = 4f; // Fuerza del retroceso
     public float knockbackDuration = 0.3f; // Duración del retroceso
-    private Rigidbody2D rb; // Para controlar el movimiento del jugador
-    public bool isDead;
-    public GameObject gameOverImg;
+    public bool isDead;               // Verificar si el jugador está muerto
 
     void Start()
     {
-        gameOverImg.SetActive(false);
-        sprite = GetComponent<SpriteRenderer>();
-        material = GetComponent<Blink>();
-        health = maxHealth;
-        rb = GetComponent<Rigidbody2D>(); // Obtener el componente Rigidbody2D
+        // Inicializar variables
+        gameOverImg.SetActive(false);        // Ocultar pantalla de Game Over
+        sprite = GetComponent<SpriteRenderer>(); // Obtener el sprite del jugador
+        health = maxHealth;                 // Salud inicial igual a la máxima
+        rb = GetComponent<Rigidbody2D>();   // Obtener Rigidbody2D del jugador
 
-        // Inicializa la barra de vida
+        // Configuración inicial de la barra de vida
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
-        if (!isDead)
-        {
-            gameOverImg.GetComponent<CanvasGroup>().alpha = 0.0f;
-        }
     }
 
     void Update()
     {
-        IsDead();
+        // Evitar que la salud exceda el máximo
         if (health > maxHealth)
         {
             health = maxHealth;
         }
 
-        // Actualiza la barra de vida según el valor actual de salud
+        // Actualizar la barra de vida
         healthBar.value = health;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemigo") && !isInmune)
+        // Recolectar ítems de salud
+        if (collision.CompareTag("HealthItem"))
         {
-            health -= collision.GetComponent<EnemigosGene>().damageToGive;
-            // Determinar la dirección del retroceso basado en la posición del enemigo
+            RestoreHealth(20f);          // Restaurar 20 puntos de salud
+            Destroy(collision.gameObject); // Eliminar el ítem
+        }
+
+        // Daño recibido de enemigos
+        if ((collision.CompareTag("Enemigo") || collision.gameObject.layer == LayerMask.NameToLayer("Enemigo")) && !isInmune)
+        {
+            float damage = 10f; // Daño del enemigo
+            health -= damage;   // Reducir la salud
+
+            // Retroceso
             Vector2 knockbackDirection = transform.position - collision.transform.position;
-            knockbackDirection.Normalize(); // Asegurarse de que la dirección esté normalizada
+            knockbackDirection.Normalize();
             StartCoroutine(ApplyKnockback(knockbackDirection));
 
+            // Activar inmunidad temporal
             StartCoroutine(Inmunity());
 
+            // Verificar si el jugador murió
             if (health <= 0)
             {
-                // Lógica para muerte o pantalla de game over
-                Time.timeScale = 0;
-                gameOverImg.SetActive(true);
-                //Detener otros sonidos
-                AudioManager.instance.PlayAudio(AudioManager.instance.gameOver);
-                isDead = true;
-                print("Has muerto");
+                health = 0; // Asegurar que no baje de 0
+                Die();
             }
-
-            // Actualiza la barra de vida después de recibir daño
-            healthBar.value = health;
         }
     }
 
-    public void IsDead()
+    public void RestoreHealth(float amount)
     {
-        if (isDead)
+        // Restaurar la salud
+        health += amount;
+        if (health > maxHealth)
         {
-            Time.timeScale = 0;
-            gameOverImg.SetActive(true);
-
-            if (gameOverImg.GetComponent<CanvasGroup>().alpha < 1f)
-            {
-                gameOverImg.GetComponent<CanvasGroup>().alpha += 0.005f;
-            }
+            health = maxHealth; // Limitar al máximo
         }
+        healthBar.value = health; // Actualizar la barra de vida
+        Debug.Log("Salud restaurada: " + health);
+
+        // Feedback visual al recoger salud
+        StartCoroutine(HealthPickupFeedback());
+    }
+
+    private void Die()
+    {
+        isDead = true;
+        Time.timeScale = 0;        // Pausar el juego
+        gameOverImg.SetActive(true); // Mostrar imagen de Game Over
+        Debug.Log("Has muerto");
     }
 
     IEnumerator ApplyKnockback(Vector2 direction)
@@ -97,18 +103,25 @@ public class PlayerHealth : MonoBehaviour
         while (timer < knockbackDuration)
         {
             timer += Time.deltaTime;
-            rb.velocity = new Vector2(direction.x * knockbackForce, rb.velocity.y); // Aplicar retroceso solo en el eje X
+            rb.velocity = new Vector2(direction.x * knockbackForce, rb.velocity.y); // Aplicar fuerza de retroceso
             yield return null;
         }
-        rb.velocity = Vector2.zero; // Detener el retroceso después de la duración
+        rb.velocity = Vector2.zero; // Detener movimiento tras el retroceso
     }
 
     IEnumerator Inmunity()
     {
-        isInmune = true;
-        sprite.material = material.blink;
-        yield return new WaitForSeconds(inmunityTime);
-        sprite.material = material.original;
-        isInmune = false;
+        isInmune = true;             // Activar inmunidad
+        sprite.color = Color.red;    // Cambiar color a rojo
+        yield return new WaitForSeconds(inmunityTime); // Esperar el tiempo de inmunidad
+        sprite.color = Color.white; // Restaurar color original
+        isInmune = false;            // Desactivar inmunidad
+    }
+
+    IEnumerator HealthPickupFeedback()
+    {
+        sprite.color = Color.green;  // Cambiar color a verde al recoger salud
+        yield return new WaitForSeconds(0.2f);
+        sprite.color = Color.white; // Restaurar color original
     }
 }
