@@ -81,6 +81,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead)
         {
+            AudioManager.instance.lvl1bgmsc.Stop();
             Time.timeScale = 0;
             gameOverImg.SetActive(true);
 

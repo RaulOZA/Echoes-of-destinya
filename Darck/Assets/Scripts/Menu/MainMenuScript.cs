@@ -13,6 +13,7 @@ public class MainMenuScript : MonoBehaviour
         {
             AudioManager.instance.gameOver.Stop();
             AudioManager.instance.PlayAudio(AudioManager.instance.mainMenu);
+            //AudioManager.instance.PlayAudio(AudioManager.instance.thunder);
         }
         Time.timeScale = 1;
     }
@@ -26,7 +27,9 @@ public class MainMenuScript : MonoBehaviour
     public void StartGame()
     {
         AudioManager.instance.mainMenu.Stop();
+        AudioManager.instance.thunder.Stop();
         SceneManager.LoadScene(1);
+        AudioManager.instance.lvl1bgmsc.Play();
     }
 
     public void QuitGame()
@@ -37,6 +40,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        AudioManager.instance.lvl1bgmsc.Stop();
         SceneManager.LoadScene(0);
     }
 }
