@@ -1,119 +1,187 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovilidadEnemigo : MonoBehaviour
 {
-    public float speed = 2f;
-    public Transform[] waypoints;
-    public float attackRange = 1.5f;
-    public float attackCooldown = 1f;
-    private float lastAttackTime = 0f;
+    [SerializeField] private float speed;
+    [SerializeField] private float waitTime;
+    [SerializeField] private Transform[] waypoints;
+    [SerializeField] private Transform player;
+    [SerializeField] private float followDistance = 10f;
+    [SerializeField] private float attackDistance = 2f;
+    [SerializeField] public float damage = 10f;
+    [SerializeField] private float attackCooldown = 2f;
+    [SerializeField] private Animator animator;
+    [SerializeField] private BoxCollider2D weaponCollider; // Collider del arma
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckDistance = 1f;
 
-    private int currentWaypointIndex = 0;
-    private Transform player;
-    private bool isChasing = false;
-
-    private Animator animator; // Referencia al Animator
-
-    private bool playerInRange = false; // Saber si el jugador está en el rango de detección
+    private int currentWaypoint;
+    private bool isWaiting;
+    private bool isFollowingPlayer;
+    private bool isFacingRight = true;
+    private bool isAttacking = false;
+    private float nextAttackTime = 0f;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        animator = GetComponent<Animator>(); // Obtener el Animator del enemigo
+        currentWaypoint = 0;
+        isWaiting = false;
+
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = false;
+        }
     }
 
     void Update()
     {
-        if (playerInRange)
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (IsGrounded())
         {
-            // Mover hacia el jugador
-            MoveTowards(player.position);
-
-            // Cambiar a animación de caminar
-            animator.SetBool("Caminar", true);
-
-            // Comprobar si está en rango de ataque
-            if (Vector2.Distance(transform.position, player.position) <= attackRange && Time.time - lastAttackTime >= attackCooldown)
+            if (!isAttacking)
             {
-                RotateTowardsPlayer(); // Rotar el enemigo hacia el jugador
-                Attack();
-                lastAttackTime = Time.time;
+                if (distanceToPlayer <= followDistance && distanceToPlayer > attackDistance)
+                {
+                    isFollowingPlayer = true;
+                    PatrolWaypoints(false);
+                    FollowPlayer();
+                }
+                else if (distanceToPlayer <= attackDistance && Time.time >= nextAttackTime)
+                {
+                    isFollowingPlayer = false;
+                    PatrolWaypoints(false);
+                    StartCoroutine(AttackPlayer());
+                }
+                else if (distanceToPlayer > followDistance)
+                {
+                    isFollowingPlayer = false;
+                    PatrolWaypoints(true);
+                }
             }
         }
         else
         {
-            // Patrullar
-            Patrol();
-
-            // Cambiar a animación de caminar si se está moviendo
-            animator.SetBool("Caminar", true);
-        }
-    }
-
-    void Patrol()
-    {
-        if (waypoints.Length == 0) return;
-
-        Transform targetWaypoint = waypoints[currentWaypointIndex];
-        MoveTowards(targetWaypoint.position);
-
-        if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
-        {
-            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
-
-            // Si no se está moviendo, cambiar a animación Idle
             animator.SetBool("Caminar", false);
         }
     }
 
-    void MoveTowards(Vector2 targetPosition)
+    void PatrolWaypoints(bool shouldPatrol)
     {
-        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
-        transform.Translate(direction * speed * Time.deltaTime);
-    }
-
-    void RotateTowardsPlayer()
-    {
-        Vector3 direction = player.position - transform.position; // Dirección hacia el jugador
-        if (direction.x < 0)
+        if (shouldPatrol)
         {
-            // Girar el enemigo si el jugador está a la izquierda
-            transform.localScale = new Vector3(-1, 1, 1);
+            if (!isWaiting)
+            {
+                Vector2 targetPosition = new Vector2(waypoints[currentWaypoint].position.x, transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+                animator.SetBool("Caminar", true);
+                FlipTowards(targetPosition.x);
+
+                if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
+                {
+                    StartCoroutine(WaitAtWaypoint());
+                }
+            }
         }
         else
         {
-            // Girar el enemigo si el jugador está a la derecha
-            transform.localScale = new Vector3(1, 1, 1);
+            animator.SetBool("Caminar", false);
         }
     }
 
-    void Attack()
+    IEnumerator WaitAtWaypoint()
     {
-        // Activar la animación de ataque
-        animator.SetTrigger("Ataque");
-
-        // Implementar la lógica para el ataque
-        Debug.Log("Attacking Player!");
-    }
-
-    // Detectar si el jugador entra en el rango de detección
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        isWaiting = true;
+        animator.SetBool("Caminar", false);
+        yield return new WaitForSeconds(waitTime);
+        currentWaypoint++;
+        if (currentWaypoint >= waypoints.Length)
         {
-            playerInRange = true;
+            currentWaypoint = 0;
+        }
+        isWaiting = false;
+    }
+
+    void FollowPlayer()
+    {
+        Vector2 targetPosition = new Vector2(player.position.x, transform.position.y);
+        transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        animator.SetBool("Caminar", true);
+        FlipTowards(targetPosition.x);
+    }
+
+    IEnumerator AttackPlayer()
+    {
+        isAttacking = true;
+        animator.SetBool("Caminar", false);
+        animator.SetBool("Atacar", true);
+
+        // Activar el collider de arma en el momento adecuado
+        yield return new WaitForSeconds(0.5f); // Sincronizar con la animación de ataque
+        ActivateWeaponCollider(); // Activa el collider del arma
+
+        yield return new WaitForSeconds(0.5f); // Duración del daño
+        DeactivateWeaponCollider(); // Desactiva el collider del arma al finalizar el ataque
+
+        nextAttackTime = Time.time + attackCooldown;
+        animator.SetBool("Atacar", false);
+        isAttacking = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.health -= damage; // Aplica el daño
+                playerHealth.healthBar.value = playerHealth.health; // Actualiza la barra de vida
+            }
         }
     }
 
-    // Detectar si el jugador sale del rango de detección
-    void OnTriggerExit2D(Collider2D other)
+    void FlipTowards(float targetX)
     {
-        if (other.CompareTag("Player"))
+        float direction = targetX - transform.position.x;
+        if (Mathf.Abs(direction) > 0.1f)
         {
-            playerInRange = false;
-            animator.SetBool("Caminar", false); // Cambiar a Idle si el jugador se va
+            if ((direction > 0 && !isFacingRight) || (direction < 0 && isFacingRight))
+            {
+                Flip();
+            }
         }
+    }
+
+    public void ActivateWeaponCollider()
+    {
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = true;
+        }
+    }
+
+    public void DeactivateWeaponCollider()
+    {
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = false;
+        }
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
+    bool IsGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+        return hit.collider != null;
     }
 }
