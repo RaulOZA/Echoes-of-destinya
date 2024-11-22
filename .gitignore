@@ -25,6 +25,7 @@
 *.sln
 *.suo
 *.tmp
+.vs/
 
 # Ignore files created by OS or development tools
 .DS_Store
