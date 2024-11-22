@@ -119,10 +119,10 @@ public class MovilidadEnemigo : MonoBehaviour
         animator.SetBool("Atacar", true);
 
         // Activar el collider de arma en el momento adecuado
-        yield return new WaitForSeconds(0.5f); // Sincronizar con la animación de ataque
+        yield return new WaitForSeconds(0.5f); // Sincronizar con la animaciï¿½n de ataque
         ActivateWeaponCollider(); // Activa el collider del arma
 
-        // Aplicar daño directamente al jugador
+        // Aplicar daÃ±o directamente al jugador
         if (Vector2.Distance(transform.position, player.position) <= attackDistance)
         {
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
@@ -143,7 +143,7 @@ public class MovilidadEnemigo : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.2f); // Duración del daño
+        yield return new WaitForSeconds(0.2f); // DuraciÃ³n del daÃ±o
         DeactivateWeaponCollider(); // Desactiva el collider del arma al finalizar el ataque
 
         nextAttackTime = Time.time + attackCooldown;
@@ -158,7 +158,7 @@ public class MovilidadEnemigo : MonoBehaviour
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.health -= damage; // Aplica el daño directamente
+                playerHealth.health -= damage; // Aplica el daÃ±o directamente
                 playerHealth.health = Mathf.Clamp(playerHealth.health, 0, playerHealth.maxHealth); // Asegura que la salud no sea negativa
                 playerHealth.healthBar.value = playerHealth.health; // Actualiza la barra de vida
 
@@ -171,7 +171,7 @@ public class MovilidadEnemigo : MonoBehaviour
                     StartCoroutine(playerHealth.Inmunity());
                 }
 
-                DeactivateWeaponCollider(); // Evita múltiples daños por la misma activación
+                DeactivateWeaponCollider(); // Evita mÃºltiples daÃ±os por la misma activaciÃ³n
             }
         }
     }
@@ -218,3 +218,5 @@ public class MovilidadEnemigo : MonoBehaviour
         return hit.collider != null;
     }
 }
+
+
