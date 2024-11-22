@@ -1268,7 +1268,7 @@ MonoBehaviour:
   oscuroHit: {fileID: 663611194}
   mainMenu: {fileID: 1241069631}
   gameOver: {fileID: 411308878}
-  lvl1bgmsc: {fileID: 1808090488}
+  lvlbgmsc: {fileID: 1808090488}
   masterVol: 0
   effectsVol: 0
   masterSlider: {fileID: 700144873}

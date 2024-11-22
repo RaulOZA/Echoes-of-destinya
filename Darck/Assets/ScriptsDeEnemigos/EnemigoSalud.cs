@@ -61,6 +61,12 @@ public class EnemigoSalud : MonoBehaviour
                 // Comportamiento para el jefe
                 TakeBossDamage(damage);
             }
+            else if (enemyType == EnemyType.Regular) {
+                AudioManager.instance.PlayAudio(AudioManager.instance.oscuroHit);
+                enemy.healthPoints = Mathf.Max(enemy.healthPoints - damage, 0);
+                animator.SetTrigger("RecibirGolpe");
+                StartCoroutine(BlinkEffect());
+            }
             else
             {
                 // Comportamiento para enemigos regulares

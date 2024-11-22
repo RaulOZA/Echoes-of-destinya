@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioMixer musicMixer, effectsMixer;
 
-    public AudioSource swing, oscuroDeath, oscuroHit, mainMenu, gameOver, lvl1bgmsc;
+    public AudioSource swing, oscuroDeath, oscuroHit, mainMenu, gameOver, lvlbgmsc;
 
     public static AudioManager instance;
 

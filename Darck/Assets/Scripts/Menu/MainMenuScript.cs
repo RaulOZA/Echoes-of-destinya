@@ -28,7 +28,7 @@ public class MainMenuScript : MonoBehaviour
     {
         AudioManager.instance.mainMenu.Stop();
         SceneManager.LoadScene(1);
-        AudioManager.instance.lvl1bgmsc.Play();
+        AudioManager.instance.lvlbgmsc.Play();
     }
 
     public void QuitGame()
@@ -39,7 +39,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        AudioManager.instance.lvl1bgmsc.Stop();
+        AudioManager.instance.lvlbgmsc.Stop();
         SceneManager.LoadScene(0);
     }
 }
