@@ -122,7 +122,28 @@ public class MovilidadEnemigo : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // Sincronizar con la animación de ataque
         ActivateWeaponCollider(); // Activa el collider del arma
 
-        yield return new WaitForSeconds(0.5f); // Duración del daño
+        // Aplicar daño directamente al jugador
+        if (Vector2.Distance(transform.position, player.position) <= attackDistance)
+        {
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.health -= damage;
+                playerHealth.health = Mathf.Clamp(playerHealth.health, 0, playerHealth.maxHealth);
+                playerHealth.healthBar.value = playerHealth.health;
+
+                if (playerHealth.health <= 0)
+                {
+                    playerHealth.Die();
+                }
+                else
+                {
+                    StartCoroutine(playerHealth.Inmunity());
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(0.2f); // Duración del daño
         DeactivateWeaponCollider(); // Desactiva el collider del arma al finalizar el ataque
 
         nextAttackTime = Time.time + attackCooldown;
@@ -130,15 +151,27 @@ public class MovilidadEnemigo : MonoBehaviour
         isAttacking = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (weaponCollider.enabled && collision.CompareTag("Player"))
         {
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.health -= damage; // Aplica el daño
+                playerHealth.health -= damage; // Aplica el daño directamente
+                playerHealth.health = Mathf.Clamp(playerHealth.health, 0, playerHealth.maxHealth); // Asegura que la salud no sea negativa
                 playerHealth.healthBar.value = playerHealth.health; // Actualiza la barra de vida
+
+                if (playerHealth.health <= 0)
+                {
+                    playerHealth.Die();
+                }
+                else
+                {
+                    StartCoroutine(playerHealth.Inmunity());
+                }
+
+                DeactivateWeaponCollider(); // Evita múltiples daños por la misma activación
             }
         }
     }

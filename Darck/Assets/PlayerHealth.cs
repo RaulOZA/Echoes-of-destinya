@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider healthBar;          // Barra de vida (UI)
     public float health;              // Salud actual del jugador
     public float maxHealth;           // Salud máxima del jugador
-    private bool isInmune;            // Estado de inmunidad
+    public bool isInmune;            // Estado de inmunidad
     public float inmunityTime;        // Duración de la inmunidad
     private SpriteRenderer sprite;    // Sprite del jugador
     public GameObject gameOverImg;    // Imagen de Game Over
@@ -89,7 +89,7 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(HealthPickupFeedback());
     }
 
-    private void Die()
+    public void Die()
     {
         isDead = true;
         Time.timeScale = 0;        // Pausar el juego
@@ -97,7 +97,7 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Has muerto");
     }
 
-    IEnumerator ApplyKnockback(Vector2 direction)
+   public IEnumerator ApplyKnockback(Vector2 direction)
     {
         float timer = 0;
         while (timer < knockbackDuration)
@@ -109,7 +109,7 @@ public class PlayerHealth : MonoBehaviour
         rb.velocity = Vector2.zero; // Detener movimiento tras el retroceso
     }
 
-    IEnumerator Inmunity()
+    public IEnumerator Inmunity()
     {
         isInmune = true;             // Activar inmunidad
         sprite.color = Color.red;    // Cambiar color a rojo
