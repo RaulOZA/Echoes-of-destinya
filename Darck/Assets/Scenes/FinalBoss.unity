@@ -4635,7 +4635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &829625100
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4652,10 +4652,10 @@ RectTransform:
   - {fileID: 805252619}
   m_Father: {fileID: 525387978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &829625101
 CanvasGroup:
@@ -9341,13 +9341,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c05e2b4d47bef478fd6225106fd7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 24100000, guid: c92dc04bf10c1ee40a0f96a6645d694b, type: 2}
-  effects: {fileID: 24100000, guid: 40f8a23bd81608b4490d042b3e7ea47f, type: 2}
+  musicMixer: {fileID: 0}
+  effectsMixer: {fileID: 0}
   swing: {fileID: 667503281}
   oscuroDeath: {fileID: 12386746}
   oscuroHit: {fileID: 1342507115}
   mainMenu: {fileID: 450979998}
   gameOver: {fileID: 446146695}
+  lvlbgmsc: {fileID: 0}
+  masterVol: 0
+  effectsVol: 0
+  masterSlider: {fileID: 0}
+  effectsSlider: {fileID: 0}
 --- !u!4 &1504783162
 Transform:
   m_ObjectHideFlags: 0

@@ -92,12 +92,32 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        Time.timeScale = 0;        // Pausar el juego
+        AudioManager.instance.lvlbgmsc.Stop();
+        Time.timeScale = 0; // Pausar el juego
         gameOverImg.SetActive(true); // Mostrar imagen de Game Over
+        StartCoroutine(FadeInGameOver());
         Debug.Log("Has muerto");
     }
 
-   public IEnumerator ApplyKnockback(Vector2 direction)
+    IEnumerator FadeInGameOver()
+    {
+        CanvasGroup canvasGroup = gameOverImg.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            Debug.LogError("CanvasGroup component missing on GameOver image!");
+            yield break;
+        }
+
+        canvasGroup.alpha = 0f; // Iniciar con alpha 0
+        while (canvasGroup.alpha < 1f)
+        {
+            canvasGroup.alpha += Time.unscaledDeltaTime * 0.5f; // Velocidad de fade in
+            yield return null; // Esperar al siguiente frame
+        }
+        canvasGroup.alpha = 1f; // Asegurar que termine en 1
+    }
+
+    public IEnumerator ApplyKnockback(Vector2 direction)
     {
         float timer = 0;
         while (timer < knockbackDuration)
