@@ -119,10 +119,10 @@ public class MovilidadEnemigo : MonoBehaviour
         animator.SetBool("Atacar", true);
 
         // Activar el collider de arma en el momento adecuado
-        yield return new WaitForSeconds(0.5f); // Sincronizar con la animación de ataque
+        yield return new WaitForSeconds(0.5f); // Sincronizar con la animaciï¿½n de ataque
         ActivateWeaponCollider(); // Activa el collider del arma
 
-        yield return new WaitForSeconds(0.5f); // Duración del daño
+        yield return new WaitForSeconds(0.5f); // Duraciï¿½n del daï¿½o
         DeactivateWeaponCollider(); // Desactiva el collider del arma al finalizar el ataque
 
         nextAttackTime = Time.time + attackCooldown;
@@ -137,7 +137,7 @@ public class MovilidadEnemigo : MonoBehaviour
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.health -= damage; // Aplica el daño
+                playerHealth.health -= damage; // Aplica el daï¿½o
                 playerHealth.healthBar.value = playerHealth.health; // Actualiza la barra de vida
             }
         }
@@ -185,3 +185,5 @@ public class MovilidadEnemigo : MonoBehaviour
         return hit.collider != null;
     }
 }
+
+
