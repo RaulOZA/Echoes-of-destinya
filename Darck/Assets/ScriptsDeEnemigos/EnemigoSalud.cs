@@ -1,67 +1,164 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemigoSalud : MonoBehaviour
 {
-    public enum EnemyType { Oscuro, Skeleton, Necromancer } // Tipos de enemigos
+    public enum EnemyType { Regular, Skeleton, Necromancer, Boss } // Tipos de enemigos
     [SerializeField] private EnemyType enemyType;
 
-    private EnemigosGene enemy;
+    public EnemigosGene enemy;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
     private bool isDead = false;
     private bool canReceiveDamage = true;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float invulnerabilityTime = 1f;
-    [SerializeField] private float respawnTime = 5f;
-    private float maxHealth;
 
-    private MovilidadSkeleton skeletonMovement; // Referencia al script de movimiento
-    [SerializeField] private List<EnemigoSalud> controlledSkeletons = new List<EnemigoSalud>(); // Skeletons controlados por el Necromancer
-
-    [SerializeField] private int scorePoints; // Puntos que otorgará este enemigo al morir
-
-    [Header("Drop Settings")] // Configuración de drops
-    [SerializeField] private GameObject healthItemPrefab; // Prefab del ítem de salud
-    [SerializeField] private GameObject manaItemPrefab; // Prefab del ítem de maná
-    [SerializeField] private float dropChance = 0.5f; // Probabilidad general de que el enemigo suelte algo
+    [Header("Boss Settings")]
+    public float bossHealth = 100f; // Salud máxima del jefe
+    private float currentHealth;
+    public Image healthBarImage; // Barra de salud del jefe
+    [SerializeField] private float attackCooldown = 1f; // Tiempo entre ataques del jefe
+    [SerializeField] private float meleeAttackRange = 2.0f; // Rango de ataque cuerpo a cuerpo del jefe
+    [SerializeField] private Transform player; // Referencia al jugador
+    private float lastAttackTime;
 
     private void Start()
     {
         enemy = GetComponent<EnemigosGene>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        skeletonMovement = GetComponent<MovilidadSkeleton>(); // Obtener la referencia al script de movimiento
-        maxHealth = enemy.healthPoints;
+        rb = GetComponent<Rigidbody2D>();
+
+        // Inicializar comportamiento del jefe si aplica
+        if (enemyType == EnemyType.Boss)
+        {
+            currentHealth = bossHealth;
+            if (healthBarImage != null) healthBarImage.fillAmount = 1.0f;
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+    }
+
+    private void Update()
+    {
+        if (enemyType == EnemyType.Boss && player != null && !isDead)
+        {
+            BossBehavior();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Weapon") && !isDead && canReceiveDamage)
         {
-            enemy.healthPoints = Mathf.Max(enemy.healthPoints - 2f, 0); // Asegura que la salud no sea menor a 0
+            float damage = 2f; // Daño base del arma
 
-            if (enemyType != EnemyType.Skeleton)
+            if (enemyType == EnemyType.Boss)
             {
+                // Comportamiento para el jefe
+                TakeBossDamage(damage);
+            }
+            else if (enemyType == EnemyType.Regular) {
+                AudioManager.instance.PlayAudio(AudioManager.instance.oscuroHit);
+                enemy.healthPoints = Mathf.Max(enemy.healthPoints - damage, 0);
                 animator.SetTrigger("RecibirGolpe");
+                StartCoroutine(BlinkEffect());
             }
             else
             {
+                // Comportamiento para enemigos regulares
+                enemy.healthPoints = Mathf.Max(enemy.healthPoints - damage, 0);
+                animator.SetTrigger("RecibirGolpe");
                 StartCoroutine(BlinkEffect());
             }
 
-            AudioManager.instance.PlayAudio(AudioManager.instance.oscuroHit);
-
-            // Aplica el retroceso según la posición del jugador
+            // Aplica retroceso
             Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
-            GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
 
             StartCoroutine(InvulnerabilityCoroutine());
 
+            // Si la salud llega a 0
             if (enemy.healthPoints <= 0 && !isDead)
             {
                 StartCoroutine(DeathSequence());
+            }
+        }
+    }
+
+    private void TakeBossDamage(float damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth < 0) currentHealth = 0;
+        if (healthBarImage != null) healthBarImage.fillAmount = currentHealth / bossHealth;
+
+        // Activar la animación de daño para el jefe
+        animator.SetBool("IsHit", true);
+        StartCoroutine(ResetBossHitAnimation());
+
+        if (currentHealth == 0)
+        {
+            StartCoroutine(DeathSequence());
+        }
+    }
+
+    private IEnumerator ResetBossHitAnimation()
+    {
+        yield return new WaitForSeconds(0.5f); // Duración de la animación de daño
+        animator.SetBool("IsHit", false);     // Reinicia la animación
+    }
+
+    void BossBehavior()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        // Ajustar dirección para mirar al jugador manteniendo la escala original
+        if (player.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+
+        // Si está en rango de ataque y puede atacar
+        if (distanceToPlayer <= meleeAttackRange && Time.time >= lastAttackTime + attackCooldown)
+        {
+            PerformBossAttack();
+        }
+    }
+
+
+    private void PerformBossAttack()
+    {
+        lastAttackTime = Time.time;
+        animator.SetTrigger("Attack");
+
+        // Detectar jugadores en el rango de ataque
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, meleeAttackRange, LayerMask.GetMask("Player"));
+
+        foreach (Collider2D playerCollider in hitPlayers)
+        {
+            PlayerHealth playerHealth = playerCollider.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                // Reducir la salud directamente
+                playerHealth.health -= 10; // Cambia el valor del daño según lo necesites
+
+                // Verificar si la salud del jugador es menor o igual a 0
+                if (playerHealth.health <= 0)
+                {
+                    playerHealth.health = 0; // Evitar que sea negativo
+                    playerHealth.Die();      // Llamar al método Die en PlayerHealth
+                }
+
+                // Actualizar la barra de salud del jugador
+                playerHealth.healthBar.value = playerHealth.health;
             }
         }
     }
@@ -90,69 +187,36 @@ public class EnemigoSalud : MonoBehaviour
     private IEnumerator DeathSequence()
     {
         isDead = true;
-        skeletonMovement?.SetDead(true); // Detener el movimiento al morir si existe skeletonMovement
-        animator.SetTrigger("MuerteEnemigo"); // Activa la animación de muerte
-        AudioManager.instance.PlayAudio(AudioManager.instance.oscuroDeath);
+        animator.SetTrigger("MuerteEnemigo");
 
-        // **Agregamos los puntos al puntaje global usando GameManager**
-        GameManager.instance.AddScore(scorePoints);
-
-        // Generar ítems al morir
-        DropItem();
-
-        // Espera la duración de la animación de muerte antes de proceder
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
-        if (enemyType == EnemyType.Skeleton)
+        if (enemyType == EnemyType.Boss)
         {
-            yield return new WaitForSeconds(respawnTime);
-            ReviveEnemy();
-        }
-        else if (enemyType == EnemyType.Necromancer)
-        {
-            EliminateControlledSkeletons();
-            Destroy(gameObject);
+            Debug.Log("El jefe ha muerto");
         }
         else
         {
-            Destroy(gameObject);
+            Debug.Log("Enemigo regular muerto");
+        }
+
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        if (enemyType == EnemyType.Boss)
+        {
+            Destroy(gameObject); // Elimina al jefe
+        }
+        else
+        {
+            Destroy(gameObject); // Elimina al enemigo regular
         }
     }
 
-    private void ReviveEnemy()
+    private void OnDrawGizmosSelected()
     {
-        isDead = false;
-        skeletonMovement?.SetDead(false); // Reactivar el movimiento al revivir si existe skeletonMovement
-        enemy.healthPoints = maxHealth;
-        animator.SetTrigger("Revive");
-    }
-
-    private void EliminateControlledSkeletons()
-    {
-        foreach (EnemigoSalud Skeleton in controlledSkeletons)
+        if (enemyType == EnemyType.Boss)
         {
-            if (Skeleton != null)
-            {
-                Destroy(Skeleton.gameObject); // Destruir cada Skeleton controlado
-            }
-        }
-    }
-
-    private void DropItem()
-    {
-        // Determinar si el enemigo soltará algo basado en la probabilidad general
-        if (Random.value < dropChance)
-        {
-            // Decidir aleatoriamente qué ítem soltar
-            float itemRoll = Random.value;
-            if (itemRoll < 0.5f) // 50% de posibilidades de soltar un ítem de salud
-            {
-                Instantiate(healthItemPrefab, transform.position, Quaternion.identity);
-            }
-            else // 50% de posibilidades de soltar un ítem de maná
-            {
-                Instantiate(manaItemPrefab, transform.position, Quaternion.identity);
-            }
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, meleeAttackRange);
         }
     }
 }

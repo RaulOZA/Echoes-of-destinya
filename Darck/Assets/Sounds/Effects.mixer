@@ -15,7 +15,9 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 359eba4d72dfd87419c4d75d792e158b
+    name: effectsVolume
   m_AudioMixerGroupViews:
   - guids:
     - 037b9f4e8a37e7f4cb58fd16654603e9
