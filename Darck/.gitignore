@@ -1,0 +1,36 @@
+# Ignore Unity generated files and folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Ignore crash reports and metadata
+*.pidb
+*.pidb.meta
+*.suo
+*.user
+*.userprefs
+*.unityproj
+*.booproj
+*.svd
+
+# Ignore builds
+[Bb]uilds/
+
+# Ignore auto-generated Visual Studio solution and project files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+.vs/
+*.vsidx
+*.vscode/
+
+
+# Ignore files created by OS or development tools
+.DS_Store
+.vscode/
+Thumbs.db
