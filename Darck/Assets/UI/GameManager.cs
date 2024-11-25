@@ -1,42 +1,58 @@
 using UnityEngine;
-using TMPro; // Importa esto si usas TextMeshPro
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance; // Singleton
-    public int score = 0; // Puntaje inicial
-    public TextMeshProUGUI scoreText; // Referencia al texto del puntaje en el Canvas
+    public static GameManager instance;
+
+    public float playerHealth = 100f;  // Player's health
+    public float maxPlayerHealth = 100f;
+
+    public GameObject gameOverImg;    // Reference to the Game Over image
 
     private void Awake()
     {
-        // Configuramos el Singleton
         if (instance == null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Mantener el GameManager al cambiar escenas
+            //instance = this;
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Evitar duplicados
+            //Destroy(gameObject);
         }
     }
 
-    private void Start()
-    {
-        UpdateScoreText(); // Mostrar el puntaje inicial al comenzar
-    }
+    //private void Start()
+    //{
+    //    Scene scene = SceneManager.GetActiveScene();
+    //    //if (scene.name == "Level 1")
+    //    //{
+    //    //    level1Music.Play();
+    //    //}
+    //    if (scene.name == "Level2")
+    //    {
+    //       AudioManager.instance.level2Music.Play();
+    //    }
+    //    if (scene.name == "Level3")
+    //    {
+    //        AudioManager.instance.level3Music.Play();
+    //    }
+    //    if (scene.name == "FinalBoss")
+    //    {
+    //        AudioManager.instance.level4Music.Play();
+    //    }
+    //}
 
-    public void AddScore(int points)
+    public void ResetState()
     {
-        score += points; // Aumenta el puntaje
-        UpdateScoreText(); // Actualiza el texto en pantalla
-    }
+        // Reset health
+        playerHealth = maxPlayerHealth;
 
-    private void UpdateScoreText()
-    {
-        if (scoreText != null)
+        // Hide the Game Over image if it exists
+        if (gameOverImg != null)
         {
-            scoreText.text = "Puntaje: " + score; // Muestra el puntaje actual en pantalla
+            gameOverImg.SetActive(false);
         }
     }
 }

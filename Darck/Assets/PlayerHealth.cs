@@ -26,12 +26,24 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();   // Obtener Rigidbody2D del jugador
 
         // Configuración inicial de la barra de vida
+        //if (GameManager.instance != null)
+        //{
+        //    health = GameManager.instance.playerHealth;
+        //    maxHealth = GameManager.instance.maxPlayerHealth;
+        //}
+        //else
+        //{
         healthBar.maxValue = maxHealth;
         healthBar.value = health;
+        //}
     }
 
     void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
         // Evitar que la salud exceda el máximo
         if (health > maxHealth)
         {
@@ -92,9 +104,16 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        AudioManager.instance.lvlbgmsc.Stop();
-        Time.timeScale = 0; // Pausar el juego
-        gameOverImg.SetActive(true); // Mostrar imagen de Game Over
+        GetComponent<MovimientoJugador>().enabled = false;
+        rb.velocity = Vector2.zero; // Stop any movement
+        rb.isKinematic = true;      // Disable physics interactions
+        Time.timeScale = 0;         // Pause the game
+        AudioManager.instance.level1Music.Stop();
+        AudioManager.instance.level2Music.Stop();
+        AudioManager.instance.level3Music.Stop();
+        AudioManager.instance.level4Music.Stop();
+        AudioManager.instance.gameOver.Play();
+        gameOverImg.SetActive(true);
         StartCoroutine(FadeInGameOver());
         Debug.Log("Has muerto");
     }
@@ -111,7 +130,7 @@ public class PlayerHealth : MonoBehaviour
         canvasGroup.alpha = 0f; // Iniciar con alpha 0
         while (canvasGroup.alpha < 1f)
         {
-            canvasGroup.alpha += Time.unscaledDeltaTime * 0.5f; // Velocidad de fade in
+            canvasGroup.alpha += Time.unscaledDeltaTime * 0.6f; // Velocidad de fade in
             yield return null; // Esperar al siguiente frame
         }
         canvasGroup.alpha = 1f; // Asegurar que termine en 1

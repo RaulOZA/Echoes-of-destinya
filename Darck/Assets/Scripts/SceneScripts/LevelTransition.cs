@@ -25,7 +25,6 @@ public class LevelTransition : MonoBehaviour
         {
             Debug.Log("Checkpoint activated!");
             SceneManager.LoadScene(int.Parse(nextSceneName)); // Load the specified scene
-            AudioManager.instance.lvlbgmsc.Play();
         }
     }
 }

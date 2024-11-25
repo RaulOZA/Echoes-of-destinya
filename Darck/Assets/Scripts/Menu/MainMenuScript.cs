@@ -26,9 +26,19 @@ public class MainMenuScript : MonoBehaviour
 
     public void StartGame()
     {
-        AudioManager.instance.mainMenu.Stop();
+        Time.timeScale = 1; // Ensure time scale is reset
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.mainMenu.Stop();
+            //AudioManager.instance.level1Music.Play();
+        }
+
+        // Reset GameManager state
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ResetState();
+        }
         SceneManager.LoadScene(1);
-        AudioManager.instance.lvlbgmsc.Play();
     }
 
     public void QuitGame()
@@ -39,7 +49,27 @@ public class MainMenuScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        AudioManager.instance.lvlbgmsc.Stop();
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.level1Music.Stop();
+            AudioManager.instance.level2Music.Stop();
+            AudioManager.instance.level3Music.Stop();
+            AudioManager.instance.level4Music.Stop();
+
+        }
+
+        // Reset GameManager state
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ResetState();
+        }
+
+        // Reset the GameOver UI
+        GameObject gameOverUI = GameObject.Find("GameOver");
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(false);
+        }
         SceneManager.LoadScene(0);
     }
 }
