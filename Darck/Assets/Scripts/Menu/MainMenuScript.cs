@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
+
+    public GameObject Mainmenu; // Botón de login BOTON Logout 
     // Start is called before the first frame update
     void Start()
     {
@@ -26,19 +28,10 @@ public class MainMenuScript : MonoBehaviour
 
     public void StartGame()
     {
-        Time.timeScale = 1; // Ensure time scale is reset
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.mainMenu.Stop();
-            //AudioManager.instance.level1Music.Play();
-        }
-
-        // Reset GameManager state
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.ResetState();
-        }
+        Mainmenu.SetActive(false); // Muestra el botón Loguotboton
+        AudioManager.instance.mainMenu.Stop();
         SceneManager.LoadScene(1);
+        AudioManager.instance.level1Music.Play();
     }
 
     public void QuitGame()

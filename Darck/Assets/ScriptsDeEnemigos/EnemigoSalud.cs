@@ -191,18 +191,18 @@ public class EnemigoSalud : MonoBehaviour
 
         if (enemyType == EnemyType.Boss)
         {
-        // Actualiza el puntaje en la base de datos
-AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
-int userId = SessionManager.Instance.CurrentUserId; // Obtén el ID del usuario actual
-_adminMYSQL.UpdateScore(userId, 80); // Asegúrate de tener un método UpdateScore en AdminMySQL
+                // Actualiza el puntaje en la base de datos
+        AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
+        int userId = SessionManager.Instance.CurrentUserId; // Obtén el ID del usuario actual
+        _adminMYSQL.UpdateScore(userId, 80); // Asegúrate de tener un método UpdateScore en AdminMySQL
             Debug.Log("El jefe ha muerto");
         }
         else
         {
         // Actualiza el puntaje en la base de datos
-AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
-int userId = SessionManager.Instance.CurrentUserId; // Obtén el ID del usuario actual
-_adminMYSQL.UpdateScore(userId, 50); // Asegúrate de tener un método UpdateScore en AdminMySQL
+            AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
+            int userId = SessionManager.Instance.CurrentUserId; // Obtén el ID del usuario actual
+            _adminMYSQL.UpdateScore(userId, 50); // Asegúrate de tener un método UpdateScore en AdminMySQL
             Debug.Log("Enemigo regular muerto");
         }
 
@@ -211,10 +211,10 @@ _adminMYSQL.UpdateScore(userId, 50); // Asegúrate de tener un método UpdateSco
 
         if (enemyType == EnemyType.Boss)
         {
-        // Actualiza el puntaje en la base de datos
-AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
-int userId = SessionManager.Instance.CurrentUserId; // Obtén el ID del usuario actual
-_adminMYSQL.UpdateScore(userId, 200); // Asegúrate de tener un método UpdateScore en AdminMySQL
+                    // Actualiza el puntaje en la base de datos
+            AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
+            int userId = SessionManager.Instance.CurrentUserId; // Obtén el ID del usuario actual
+            _adminMYSQL.UpdateScore(userId, 200); // Asegúrate de tener un método UpdateScore en AdminMySQL
             Destroy(gameObject); // Elimina al jefe
         }
         else

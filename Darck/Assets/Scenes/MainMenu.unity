@@ -4119,7 +4119,10 @@ MonoBehaviour:
   oscuroHit: {fileID: 663611194}
   mainMenu: {fileID: 1241069631}
   gameOver: {fileID: 411308878}
-  lvlbgmsc: {fileID: 1808090488}
+  level1Music: {fileID: 0}
+  level2Music: {fileID: 0}
+  level3Music: {fileID: 0}
+  level4Music: {fileID: 0}
   masterVol: 0
   effectsVol: 0
   masterSlider: {fileID: 700144873}
