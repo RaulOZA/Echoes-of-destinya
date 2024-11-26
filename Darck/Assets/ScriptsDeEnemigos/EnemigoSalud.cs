@@ -18,7 +18,7 @@ public class EnemigoSalud : MonoBehaviour
     [SerializeField] private float invulnerabilityTime = 1f;
 
     [Header("Boss Settings")]
-    public float bossHealth = 100f; // Salud m·xima del jefe
+    public float bossHealth = 100f; // Salud m√°xima del jefe
     private float currentHealth;
     public Image healthBarImage; // Barra de salud del jefe
     [SerializeField] private float attackCooldown = 1f; // Tiempo entre ataques del jefe
@@ -54,7 +54,7 @@ public class EnemigoSalud : MonoBehaviour
     {
         if (collision.CompareTag("Weapon") && !isDead && canReceiveDamage)
         {
-            float damage = 2f; // DaÒo base del arma
+            float damage = 2f; // Da√±o base del arma
 
             if (enemyType == EnemyType.Boss)
             {
@@ -96,7 +96,7 @@ public class EnemigoSalud : MonoBehaviour
         if (currentHealth < 0) currentHealth = 0;
         if (healthBarImage != null) healthBarImage.fillAmount = currentHealth / bossHealth;
 
-        // Activar la animaciÛn de daÒo para el jefe
+        // Activar la animaci√≥n de da√±o para el jefe
         animator.SetBool("IsHit", true);
         StartCoroutine(ResetBossHitAnimation());
 
@@ -108,15 +108,15 @@ public class EnemigoSalud : MonoBehaviour
 
     private IEnumerator ResetBossHitAnimation()
     {
-        yield return new WaitForSeconds(0.5f); // DuraciÛn de la animaciÛn de daÒo
-        animator.SetBool("IsHit", false);     // Reinicia la animaciÛn
+        yield return new WaitForSeconds(0.5f); // Duraci√≥n de la animaci√≥n de da√±o
+        animator.SetBool("IsHit", false);     // Reinicia la animaci√≥n
     }
 
     void BossBehavior()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Ajustar direcciÛn para mirar al jugador manteniendo la escala original
+        // Ajustar direcci√≥n para mirar al jugador manteniendo la escala original
         if (player.position.x > transform.position.x)
         {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -126,7 +126,7 @@ public class EnemigoSalud : MonoBehaviour
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        // Si est· en rango de ataque y puede atacar
+        // Si est√° en rango de ataque y puede atacar
         if (distanceToPlayer <= meleeAttackRange && Time.time >= lastAttackTime + attackCooldown)
         {
             PerformBossAttack();
@@ -148,13 +148,13 @@ public class EnemigoSalud : MonoBehaviour
             if (playerHealth != null)
             {
                 // Reducir la salud directamente
-                playerHealth.health -= 10; // Cambia el valor del daÒo seg˙n lo necesites
+                playerHealth.health -= 10; // Cambia el valor del da√±o seg√∫n lo necesites
 
                 // Verificar si la salud del jugador es menor o igual a 0
                 if (playerHealth.health <= 0)
                 {
                     playerHealth.health = 0; // Evitar que sea negativo
-                    playerHealth.Die();      // Llamar al mÈtodo Die en PlayerHealth
+                    playerHealth.Die();      // Llamar al m√©todo Die en PlayerHealth
                 }
 
                 // Actualizar la barra de salud del jugador
@@ -191,10 +191,18 @@ public class EnemigoSalud : MonoBehaviour
 
         if (enemyType == EnemyType.Boss)
         {
+                // Actualiza el puntaje en la base de datos
+        AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
+        int userId = SessionManager.Instance.CurrentUserId; // Obt√©n el ID del usuario actual
+        _adminMYSQL.UpdateScore(userId, 80); // Aseg√∫rate de tener un m√©todo UpdateScore en AdminMySQL
             Debug.Log("El jefe ha muerto");
         }
         else
         {
+        // Actualiza el puntaje en la base de datos
+            AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
+            int userId = SessionManager.Instance.CurrentUserId; // Obt√©n el ID del usuario actual
+            _adminMYSQL.UpdateScore(userId, 50); // Aseg√∫rate de tener un m√©todo UpdateScore en AdminMySQL
             Debug.Log("Enemigo regular muerto");
         }
 
@@ -203,6 +211,10 @@ public class EnemigoSalud : MonoBehaviour
 
         if (enemyType == EnemyType.Boss)
         {
+                    // Actualiza el puntaje en la base de datos
+            AdminMySQL _adminMYSQL = GameObject.Find("Admin_BD").GetComponent<AdminMySQL>();
+            int userId = SessionManager.Instance.CurrentUserId; // Obt√©n el ID del usuario actual
+            _adminMYSQL.UpdateScore(userId, 200); // Aseg√∫rate de tener un m√©todo UpdateScore en AdminMySQL
             Destroy(gameObject); // Elimina al jefe
         }
         else
