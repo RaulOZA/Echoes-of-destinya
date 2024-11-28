@@ -3,10 +3,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float speed = 5f; // Velocidad del proyectil
-    public float detectionRange = 10f; // Rango máximo del proyectil
+    public float detectionRange = 10f; // Rango mï¿½ximo del proyectil
     private Vector3 targetPosition;
 
-    // Método para configurar el objetivo del proyectil
+    // Mï¿½todo para configurar el objetivo del proyectil
     public void SetTarget(Vector3 target)
     {
         targetPosition = target;
@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        // Mover el proyectil hacia el objetivo si está en el rango
+        // Mover el proyectil hacia el objetivo si estï¿½ en el rango
         if (Vector3.Distance(transform.position, targetPosition) <= detectionRange)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
@@ -27,17 +27,20 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            // Si el objetivo está fuera de rango, destruye el proyectil
+            // Si el objetivo estï¿½ fuera de rango, destruye el proyectil
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+private void OnTriggerEnter2D(Collider2D collision)
+{
+    // Obtiene la capa correspondiente al "Piso"
+    int pisoLayer = LayerMask.NameToLayer("Piso");
+
+    // Si el proyectil choca con el jugador (usando tag) o el piso (usando layer), se destruye automÃ¡ticamente
+    if (collision.CompareTag("Player") || collision.gameObject.layer == pisoLayer)
     {
-        // Si el proyectil choca con algo, se destruye automáticamente
-        if (collision.CompareTag("Player") || collision.CompareTag("Piso"))
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
+}
 }
