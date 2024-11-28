@@ -1,0 +1,758 @@
+fileFormatVersion: 2
+guid: db3f599b51c72bc4d860daa158c2ff2f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Fire vortex_blue_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 69
+        width: 69
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: becc9fc06230a9d40b528126cce1b0b0
+      internalID: -77106803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_8
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 72
+        width: 76
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3251e40d484814143bd8cc2c0a807c67
+      internalID: 56756324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_9
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 76
+        width: 68
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c06596dba36106e4a8bf9381fd54f278
+      internalID: 385704011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_10
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 90
+        width: 48
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70778c9970e6523488c350917ff7b2d5
+      internalID: -1288373853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_11
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 96
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acccb8bdeef00134685b29e179562c62
+      internalID: 1339706213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_16
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 100
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7069854317dd4414b953a6140026a6b1
+      internalID: 1472045925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_17
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 99
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fe4f4984fc4d81438f8ab5776db9419
+      internalID: 1160049725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_18
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 101
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16781dad0e1e08b4ea99c100442883eb
+      internalID: 1658758047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_19
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 104
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a74af2dba1ad36d408d1e9aca77d201a
+      internalID: -655002222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_20
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 107
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8b4ef2876564ad49a5098e68f405c0b
+      internalID: -9184469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_21
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 109
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97d8a80831a6e6945901e162fad2d9b2
+      internalID: -413342592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_22
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 109
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174a04ecd1e0b354c9b140969e560140
+      internalID: -1571729435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_23
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 1
+        width: 50
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f77c42bc1bf27114389bc26a686d9781
+      internalID: 405890307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_24
+      rect:
+        serializedVersion: 2
+        x: 1847
+        y: 3
+        width: 46
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4935fe370a327ae4f9d845da3fdb65c5
+      internalID: -1475145028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_26
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 13
+        width: 47
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23fc9d4cc69a9a1428317dbb187e3f06
+      internalID: 585101757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_35
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 3
+        width: 57
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 957d691c65fb34c4eab551c684173f78
+      internalID: -2066769267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_36
+      rect:
+        serializedVersion: 2
+        x: 1652
+        y: 1
+        width: 58
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09db0b5d9fece414f91fe8a78f200624
+      internalID: 1674315258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_39
+      rect:
+        serializedVersion: 2
+        x: 2327
+        y: 19
+        width: 46
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4bbd69ea96b53441b9e834dae5eed2f
+      internalID: 2017468761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_40
+      rect:
+        serializedVersion: 2
+        x: 2424
+        y: 21
+        width: 45
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a31ea10a3b7764bbcb1ba54777786f
+      internalID: 885026636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_51
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 19
+        width: 13
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe91f8e04096a8479a08592e165bed4
+      internalID: 2011782715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_53
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 4
+        width: 47
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c289505e2286e43b5c291efd7e6ed5
+      internalID: -1871432042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_89
+      rect:
+        serializedVersion: 2
+        x: 2230
+        y: 16
+        width: 47
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88eb6b0e4df63a2468960bd36b9b2b51
+      internalID: -1098646860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_1
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 69
+        width: 74
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9da8558caf2c72f46a0eebf80f635567
+      internalID: -433663711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_2
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 71
+        width: 75
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fea82829841fec94586b7f05d291e8c0
+      internalID: -1433251633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_3
+      rect:
+        serializedVersion: 2
+        x: 1942
+        y: 10
+        width: 48
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 989ee375ffb656642a6f6f33e862824e
+      internalID: 471998638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fire vortex_blue_4
+      rect:
+        serializedVersion: 2
+        x: 2039
+        y: 15
+        width: 45
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 897d64d258b734c4cab6b85cfca104f2
+      internalID: 669005054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Fire vortex_blue_0: -77106803
+      Fire vortex_blue_1: -433663711
+      Fire vortex_blue_10: -1288373853
+      Fire vortex_blue_11: 1339706213
+      Fire vortex_blue_12: 981936134
+      Fire vortex_blue_13: -619531756
+      Fire vortex_blue_14: -618024076
+      Fire vortex_blue_15: -1947663062
+      Fire vortex_blue_16: 1472045925
+      Fire vortex_blue_17: 1160049725
+      Fire vortex_blue_18: 1658758047
+      Fire vortex_blue_19: -655002222
+      Fire vortex_blue_2: -1433251633
+      Fire vortex_blue_20: -9184469
+      Fire vortex_blue_21: -413342592
+      Fire vortex_blue_22: -1571729435
+      Fire vortex_blue_23: 405890307
+      Fire vortex_blue_24: -1475145028
+      Fire vortex_blue_25: -1326152042
+      Fire vortex_blue_26: 585101757
+      Fire vortex_blue_27: -263554075
+      Fire vortex_blue_28: -1758752975
+      Fire vortex_blue_29: -1014773342
+      Fire vortex_blue_3: 471998638
+      Fire vortex_blue_30: -967281627
+      Fire vortex_blue_31: -781994583
+      Fire vortex_blue_32: 1679858715
+      Fire vortex_blue_33: -695306285
+      Fire vortex_blue_34: 567534809
+      Fire vortex_blue_35: -2066769267
+      Fire vortex_blue_36: 1674315258
+      Fire vortex_blue_37: -1113678242
+      Fire vortex_blue_38: -2061167576
+      Fire vortex_blue_39: 2017468761
+      Fire vortex_blue_4: 669005054
+      Fire vortex_blue_40: 885026636
+      Fire vortex_blue_41: 1957504936
+      Fire vortex_blue_42: -149325816
+      Fire vortex_blue_43: -1816246274
+      Fire vortex_blue_44: 35208018
+      Fire vortex_blue_45: -2118144704
+      Fire vortex_blue_46: 1741006189
+      Fire vortex_blue_47: 596755313
+      Fire vortex_blue_48: -1997467730
+      Fire vortex_blue_49: -477701589
+      Fire vortex_blue_5: -1694880856
+      Fire vortex_blue_50: -196903898
+      Fire vortex_blue_51: 2011782715
+      Fire vortex_blue_52: -837123145
+      Fire vortex_blue_53: -1871432042
+      Fire vortex_blue_54: -194661735
+      Fire vortex_blue_55: -2094119820
+      Fire vortex_blue_56: 1119637607
+      Fire vortex_blue_57: -299688707
+      Fire vortex_blue_58: -798023603
+      Fire vortex_blue_59: 562479425
+      Fire vortex_blue_6: 2112922355
+      Fire vortex_blue_60: -225223917
+      Fire vortex_blue_61: 1584795788
+      Fire vortex_blue_62: 65524259
+      Fire vortex_blue_63: -1661349345
+      Fire vortex_blue_64: 1802579442
+      Fire vortex_blue_65: 534474901
+      Fire vortex_blue_66: 868765306
+      Fire vortex_blue_67: -206114952
+      Fire vortex_blue_68: -492702111
+      Fire vortex_blue_69: -410584696
+      Fire vortex_blue_7: -947614868
+      Fire vortex_blue_70: -1596216638
+      Fire vortex_blue_71: -1916328306
+      Fire vortex_blue_72: 1048410006
+      Fire vortex_blue_73: 1189299296
+      Fire vortex_blue_74: -795461742
+      Fire vortex_blue_75: 1596373804
+      Fire vortex_blue_76: 1488088260
+      Fire vortex_blue_77: -99894484
+      Fire vortex_blue_78: -600328041
+      Fire vortex_blue_79: -1218872059
+      Fire vortex_blue_8: 56756324
+      Fire vortex_blue_80: 1620487839
+      Fire vortex_blue_81: 1825341603
+      Fire vortex_blue_82: -195100138
+      Fire vortex_blue_83: 1117071679
+      Fire vortex_blue_84: -2039029091
+      Fire vortex_blue_85: -1902506771
+      Fire vortex_blue_86: -226789409
+      Fire vortex_blue_87: -1257646065
+      Fire vortex_blue_88: 514479423
+      Fire vortex_blue_89: -1098646860
+      Fire vortex_blue_9: 385704011
+      Fire vortex_blue_90: -1640542211
+      Fire vortex_blue_91: 1704496197
+      Fire vortex_blue_92: -1841795865
+      Fire vortex_blue_93: 1451074529
+      Fire vortex_blue_94: 1881970652
+      Fire vortex_blue_95: 416285021
+      Fire vortex_blue_96: 1848668342
+      Fire vortex_blue_97: -837887469
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

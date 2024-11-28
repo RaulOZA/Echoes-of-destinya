@@ -1,0 +1,536 @@
+fileFormatVersion: 2
+guid: bf1c2fca7b4b2704494b11646fd45e5b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FireSlash-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 56
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf5d36350c5380f43b308fccf4dfd436
+      internalID: 126613164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 56
+        width: 35
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af4b2b45ac4bb546b8cb115315ab0c1
+      internalID: 1844925920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 56
+        width: 46
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b45212abf8cf29149bb9bea928804219
+      internalID: 1872303143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 51
+        width: 47
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dfa253f5f98faf4ebcd2a84aa9c02ef
+      internalID: -583256804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 49
+        width: 51
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b50f8868d3e98c4b8c4a57452a16e83
+      internalID: -2094918705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 49
+        width: 46
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761665dee213c6c4887a7da546590d38
+      internalID: 675609889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 4
+        width: 83
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12ad52c87362b0140817e91bea0a1b1f
+      internalID: -1546835196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1195
+        y: 5
+        width: 73
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f533573fb86598499744228312b9966
+      internalID: -1573321636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 5
+        width: 64
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5512d4b8c31f9ea4fa5f0875a37a1ce8
+      internalID: 417548500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 5
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 244adaecfc417d441b343cf526f45b98
+      internalID: 1085706562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_76
+      rect:
+        serializedVersion: 2
+        x: 1596
+        y: 6
+        width: 53
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 514da65f96642574e815e3255652e9fc
+      internalID: -1433357189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1852
+        y: 7
+        width: 54
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31950ebd596635d46934569cb00022bb
+      internalID: 841370359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1724
+        y: 7
+        width: 55
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95a9c3979d25f1548b2d8ea11c223170
+      internalID: -1876211643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 71
+        width: 20
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0045bd1747e98ba4e9727a442af06fc9
+      internalID: -1673971568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireSlash-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 64
+        width: 22
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6cc5262db5b0cc40951fe9866f5fc0e
+      internalID: 431554015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      FireSlash-Sheet_0: 126613164
+      FireSlash-Sheet_1: 1844925920
+      FireSlash-Sheet_10: 2020691787
+      FireSlash-Sheet_100: 439417505
+      FireSlash-Sheet_101: -1436047170
+      FireSlash-Sheet_102: -227663457
+      FireSlash-Sheet_103: 223718202
+      FireSlash-Sheet_104: 677025133
+      FireSlash-Sheet_105: -478803745
+      FireSlash-Sheet_106: -1095257955
+      FireSlash-Sheet_11: 400599649
+      FireSlash-Sheet_12: -1876211643
+      FireSlash-Sheet_13: 841370359
+      FireSlash-Sheet_14: 431554015
+      FireSlash-Sheet_15: -635432406
+      FireSlash-Sheet_16: -485865797
+      FireSlash-Sheet_17: 417548500
+      FireSlash-Sheet_18: 110458365
+      FireSlash-Sheet_19: 355975484
+      FireSlash-Sheet_2: 1872303143
+      FireSlash-Sheet_20: -1033414719
+      FireSlash-Sheet_21: -1593181241
+      FireSlash-Sheet_22: 1510765545
+      FireSlash-Sheet_23: -213303985
+      FireSlash-Sheet_24: 1085706562
+      FireSlash-Sheet_25: -483075031
+      FireSlash-Sheet_26: -742424141
+      FireSlash-Sheet_27: -1159077516
+      FireSlash-Sheet_28: -235802017
+      FireSlash-Sheet_29: -384149129
+      FireSlash-Sheet_3: -583256804
+      FireSlash-Sheet_30: 423702079
+      FireSlash-Sheet_31: 301171135
+      FireSlash-Sheet_32: 1784324193
+      FireSlash-Sheet_33: -1057780012
+      FireSlash-Sheet_34: -170327459
+      FireSlash-Sheet_35: 2091912954
+      FireSlash-Sheet_36: 1135946915
+      FireSlash-Sheet_37: 736782879
+      FireSlash-Sheet_38: -1615986573
+      FireSlash-Sheet_39: -2022947509
+      FireSlash-Sheet_4: -2094918705
+      FireSlash-Sheet_40: -1457170693
+      FireSlash-Sheet_41: -1711715543
+      FireSlash-Sheet_42: -377555574
+      FireSlash-Sheet_43: 682905459
+      FireSlash-Sheet_44: -53654412
+      FireSlash-Sheet_45: 1067635925
+      FireSlash-Sheet_46: 1087005632
+      FireSlash-Sheet_47: -299303085
+      FireSlash-Sheet_48: 110519786
+      FireSlash-Sheet_49: 1924923751
+      FireSlash-Sheet_5: 675609889
+      FireSlash-Sheet_50: -236831975
+      FireSlash-Sheet_51: 1548801264
+      FireSlash-Sheet_52: 560670607
+      FireSlash-Sheet_53: -1958301932
+      FireSlash-Sheet_54: -610106795
+      FireSlash-Sheet_55: 1344375999
+      FireSlash-Sheet_56: 1818421992
+      FireSlash-Sheet_57: 1037343860
+      FireSlash-Sheet_58: -1815217574
+      FireSlash-Sheet_59: 751222131
+      FireSlash-Sheet_6: -1546835196
+      FireSlash-Sheet_60: -1160508100
+      FireSlash-Sheet_61: 1498558750
+      FireSlash-Sheet_62: -106629864
+      FireSlash-Sheet_63: 1101617337
+      FireSlash-Sheet_64: 246592809
+      FireSlash-Sheet_65: -1724817935
+      FireSlash-Sheet_66: -1318446994
+      FireSlash-Sheet_67: 645266521
+      FireSlash-Sheet_68: 473950972
+      FireSlash-Sheet_69: -140932647
+      FireSlash-Sheet_7: -1573321636
+      FireSlash-Sheet_70: 1514114604
+      FireSlash-Sheet_71: -2019764811
+      FireSlash-Sheet_72: -1750848484
+      FireSlash-Sheet_73: 967654636
+      FireSlash-Sheet_74: 295874809
+      FireSlash-Sheet_75: 1763591675
+      FireSlash-Sheet_76: -1433357189
+      FireSlash-Sheet_77: 690479370
+      FireSlash-Sheet_78: 168716375
+      FireSlash-Sheet_79: 894180989
+      FireSlash-Sheet_8: -1404190573
+      FireSlash-Sheet_80: 1954954267
+      FireSlash-Sheet_81: -2071799180
+      FireSlash-Sheet_82: 833478408
+      FireSlash-Sheet_83: 1890209969
+      FireSlash-Sheet_84: -489636606
+      FireSlash-Sheet_85: 1269947044
+      FireSlash-Sheet_86: -900581497
+      FireSlash-Sheet_87: 916533109
+      FireSlash-Sheet_88: -1096443454
+      FireSlash-Sheet_89: 1560224326
+      FireSlash-Sheet_9: -1673971568
+      FireSlash-Sheet_90: 49743962
+      FireSlash-Sheet_91: 1765241292
+      FireSlash-Sheet_92: -758807405
+      FireSlash-Sheet_93: -1626032725
+      FireSlash-Sheet_94: 1821547642
+      FireSlash-Sheet_95: -650873767
+      FireSlash-Sheet_96: -822240496
+      FireSlash-Sheet_97: 138311949
+      FireSlash-Sheet_98: -1770510973
+      FireSlash-Sheet_99: 96603405
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
