@@ -48,6 +48,8 @@ public class MovimientoJugador : MonoBehaviour
     public float mana = 100f;        // Maná actual
     public float maxMana = 100f;     // Maná máximo
     public float manaCost = 20f;     // Costo de maná por poder
+    private float attackCooldown = 1.0f; // Cooldown duration in seconds
+    private float lastAttackTime = 0f;
 
     private void Start()
     {
@@ -109,21 +111,43 @@ public class MovimientoJugador : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (AudioManager.instance != null)
+            // Ensure the player is on the ground before attacking
+            if (!enSuelo)
             {
-                AudioManager.instance.PlayAudio(AudioManager.instance.swing);
-            }
-            else
-            {
-                Debug.LogWarning("AudioManager instance is missing.");
+                Debug.Log("Player cannot attack while in the air.");
+                return; // Exit the method if the player is not grounded
             }
 
-            if (animator != null)
+            // Check if the attack is off cooldown
+            if (Time.time >= lastAttackTime + attackCooldown)
             {
-                animator.SetBool("Attack", true);
+                // Update last attack time
+                lastAttackTime = Time.time;
+
+                // Play swing sound if AudioManager exists
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.PlayAudio(AudioManager.instance.swing);
+                }
+                else
+                {
+                    Debug.LogWarning("AudioManager instance is missing.");
+                }
+
+                // Trigger attack animation if animator exists
+                if (animator != null)
+                {
+                    animator.SetBool("Attack", true);
+                    StartCoroutine(ResetAttackAnimation());
+                }
             }
         }
-        else if (animator != null)
+    }
+
+    private IEnumerator ResetAttackAnimation()
+    {
+        yield return new WaitForSeconds(0.1f); // Adjust duration to match the animation
+        if (animator != null)
         {
             animator.SetBool("Attack", false);
         }

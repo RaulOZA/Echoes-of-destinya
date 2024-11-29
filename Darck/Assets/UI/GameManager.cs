@@ -10,15 +10,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Configuramos el Singleton
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Mantener el GameManager al cambiar escenas
-        }
-        else
-        {
-            Destroy(gameObject); // Evitar duplicados
-        }
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject); // Mantener el GameManager al cambiar escenas
+        //}
+        //else
+        //{
+        //    Destroy(gameObject); // Evitar duplicados
+        //}
     }
 
     private void Start()

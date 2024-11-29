@@ -92,7 +92,11 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        AudioManager.instance.lvlbgmsc.Stop();
+        AudioManager.instance.level1Music.Stop();
+        AudioManager.instance.level2Music.Stop();
+        AudioManager.instance.level3Music.Stop();
+        AudioManager.instance.level4Music.Stop();
+
         Time.timeScale = 0; // Pausar el juego
         gameOverImg.SetActive(true); // Mostrar imagen de Game Over
         StartCoroutine(FadeInGameOver());

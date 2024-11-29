@@ -1152,9 +1152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be8fb571c04ef1b418f30c4944df9cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: 100
-  maxPlayerHealth: 100
-  gameOverImg: {fileID: 1634116362}
+  score: 0
+  scoreText: {fileID: 0}
 --- !u!114 &65853691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14199,6 +14198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   enemy: {fileID: 0}
+  animator: {fileID: 0}
+  isDead: 0
   knockbackForce: 5
   invulnerabilityTime: 1
   bossHealth: 100
@@ -14206,6 +14207,7 @@ MonoBehaviour:
   attackCooldown: 1
   meleeAttackRange: 2
   player: {fileID: 0}
+  scorePoints: 10
 --- !u!114 &868175275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15748,13 +15750,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidadDeMovimiento: 700
   suavizadoDeMovimiento: 0
-  fuerzaDeSalto: 450
+  fuerzaDeSalto: 9
   queEsSuelo:
     serializedVersion: 2
     m_Bits: 64
   controladorSuelo: {fileID: 1057776130}
   dimensionesCaja: {x: 1, y: 0.25, z: 0}
   enSuelo: 0
+  fuerzaDash: 20
+  duracionDash: 0.2
+  tiempoRecargaDash: 1
+  poderRayoNegro: {fileID: 4021035618479909360, guid: e1fb50aa0eeb31546a607cb5971a3de9, type: 3}
+  poderRayo: {fileID: 3282615304345314624, guid: 19f2582bed02bc6479da8f3159095133, type: 3}
+  poderDestello: {fileID: 3104742368759428871, guid: d44ddc0766b53514984953ff3d2ed121, type: 3}
+  poderFuego: {fileID: 0}
+  puntoDisparo: {fileID: 0}
+  velocidadProyectil: 0
+  tiempoVidaProyectil: 2
+  manaBar: {fileID: 0}
+  mana: 100
+  maxMana: 100
+  manaCost: 20
 --- !u!61 &1003132664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32102,6 +32118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   enemy: {fileID: 0}
+  animator: {fileID: 0}
+  isDead: 0
   knockbackForce: 5
   invulnerabilityTime: 1
   bossHealth: 100
@@ -32109,6 +32127,7 @@ MonoBehaviour:
   attackCooldown: 1
   meleeAttackRange: 2
   player: {fileID: 0}
+  scorePoints: 10
 --- !u!114 &1805131925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37192,6 +37211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   enemy: {fileID: 0}
+  animator: {fileID: 0}
+  isDead: 0
   knockbackForce: 5
   invulnerabilityTime: 1
   bossHealth: 100
@@ -37199,6 +37220,7 @@ MonoBehaviour:
   attackCooldown: 1
   meleeAttackRange: 2
   player: {fileID: 0}
+  scorePoints: 10
 --- !u!114 &1990971371
 MonoBehaviour:
   m_ObjectHideFlags: 0

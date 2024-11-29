@@ -33,11 +33,11 @@ public class MainMenuScript : MonoBehaviour
             //AudioManager.instance.level1Music.Play();
         }
 
-        // Reset GameManager state
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.ResetState();
-        }
+        //// Reset GameManager state
+        //if (GameManager.instance != null)
+        //{
+        //    GameManager.instance.ResetState();
+        //}
         SceneManager.LoadScene(1);
     }
 
@@ -57,13 +57,7 @@ public class MainMenuScript : MonoBehaviour
             AudioManager.instance.level4Music.Stop();
 
         }
-
-        // Reset GameManager state
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.ResetState();
-        }
-
+     
         // Reset the GameOver UI
         GameObject gameOverUI = GameObject.Find("GameOver");
         if (gameOverUI != null)
