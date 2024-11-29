@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
+
 {
+
+    public GameObject Menu; 
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,7 @@ public class MainMenuScript : MonoBehaviour
         {
             GameManager.instance.ResetState();
         }
+        Menu.gameObject.SetActive(false);
         SceneManager.LoadScene(1);
     }
 

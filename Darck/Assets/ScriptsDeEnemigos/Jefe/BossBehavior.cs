@@ -285,6 +285,14 @@ public class BossBehavior : MonoBehaviour
             animator.SetBool("IsDead", true);
         }
 
+
+
+        // Verifica el tipo de enemigo y actualiza el puntaje
+        GameObject adminBDObject = GameObject.Find("Admin_BD");
+        AdminMySQL _adminMYSQL = adminBDObject.GetComponent<AdminMySQL>();
+        int userId = SessionManager.Instance?.CurrentUserId ?? 0; // Maneja el caso en que la sesión sea null
+        _adminMYSQL.UpdateScore(userId, 100);
+
         rb.velocity = Vector2.zero;
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, 10.0f);

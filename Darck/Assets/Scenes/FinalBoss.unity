@@ -6158,6 +6158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 2
   enemy: {fileID: 0}
+  animator: {fileID: 0}
+  isDead: 0
   knockbackForce: 5
   invulnerabilityTime: 1
   bossHealth: 100
@@ -6165,6 +6167,7 @@ MonoBehaviour:
   attackCooldown: 1
   meleeAttackRange: 2
   player: {fileID: 0}
+  scorePoints: 10
 --- !u!114 &868053091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7848,6 +7851,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 1
   enemy: {fileID: 0}
+  animator: {fileID: 0}
+  isDead: 0
   knockbackForce: 5
   invulnerabilityTime: 1
   bossHealth: 100
@@ -7855,6 +7860,7 @@ MonoBehaviour:
   attackCooldown: 1
   meleeAttackRange: 2
   player: {fileID: 0}
+  scorePoints: 10
 --- !u!114 &1038533629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8375,6 +8381,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192875351}
   m_CullTransparentMesh: 1
+--- !u!1 &1194790193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194790194}
+  - component: {fileID: 1194790196}
+  - component: {fileID: 1194790195}
+  m_Layer: 0
+  m_Name: Admin_BD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1194790194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194790193}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1744385076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1194790195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194790193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392b01d2ad066d14699d212cbed738ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoginField: {fileID: 0}
+  PasswordField: {fileID: 0}
+  Condirmpassword: {fileID: 0}
+  Email: {fileID: 0}
+  StartBtn: {fileID: 0}
+  LoginButton: {fileID: 0}
+  RegisterButton: {fileID: 0}
+  Registeroption: {fileID: 0}
+  Quitbutton: {fileID: 0}
+  Updatebutton: {fileID: 0}
+  Updateoption: {fileID: 0}
+  Deletebutton: {fileID: 0}
+  Back: {fileID: 0}
+  Back2: {fileID: 0}
+  LogoutButton: {fileID: 0}
+  UserNameDisplay: {fileID: 0}
+  LevelDisplay: {fileID: 0}
+  ScoreDisplay: {fileID: 0}
+--- !u!114 &1194790196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194790193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20072066604f134d8fe6b0e6131a2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1217467785
 GameObject:
   m_ObjectHideFlags: 0
@@ -10094,6 +10175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 3
   enemy: {fileID: 1376277473}
+  animator: {fileID: 0}
+  isDead: 0
   knockbackForce: 5
   invulnerabilityTime: 1
   bossHealth: 20
@@ -10101,6 +10184,7 @@ MonoBehaviour:
   attackCooldown: 1
   meleeAttackRange: 2
   player: {fileID: 1699085671}
+  scorePoints: 10
 --- !u!114 &1376277473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13321,6 +13405,8 @@ MonoBehaviour:
   playerHealth: 100
   maxPlayerHealth: 100
   gameOverImg: {fileID: 447806049}
+  score: 0
+  scoreText: {fileID: 688736348}
 --- !u!114 &1744385073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13360,6 +13446,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 525387978}
+  - {fileID: 1194790194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887902887

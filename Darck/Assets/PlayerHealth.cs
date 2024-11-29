@@ -69,6 +69,11 @@ public class PlayerHealth : MonoBehaviour
             float damage = 10f; // Daño del enemigo
             health -= damage;   // Reducir la salud
 
+            GameObject adminBDObject = GameObject.Find("Admin_BD");
+            AdminMySQL _adminMYSQL = adminBDObject.GetComponent<AdminMySQL>();
+            int userId = SessionManager.Instance?.CurrentUserId ?? 0; // Maneja el caso en que la sesión sea null
+            _adminMYSQL.ReduceScore(userId, 1);
+
             // Retroceso
             Vector2 knockbackDirection = transform.position - collision.transform.position;
             knockbackDirection.Normalize();
