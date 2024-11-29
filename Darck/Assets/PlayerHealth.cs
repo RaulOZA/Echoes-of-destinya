@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
         gameOverImg.SetActive(false);        // Ocultar pantalla de Game Over
         sprite = GetComponent<SpriteRenderer>(); // Obtener el sprite del jugador
         health = maxHealth;                 // Salud inicial igual a la máxima
-        rb = GetComponent<Rigidbody2D>();   // Obtener Rigidbody2D del jugador
+        //rb = GetComponent<Rigidbody2D>();   // Obtener Rigidbody2D del jugador
 
         // Configuración inicial de la barra de vida
         //if (GameManager.instance != null)
@@ -105,8 +105,8 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
         GetComponent<MovimientoJugador>().enabled = false;
-        rb.velocity = Vector2.zero; // Stop any movement
-        rb.isKinematic = true;      // Disable physics interactions
+        //rb.velocity = Vector2.zero; // Stop any movement
+        //rb.isKinematic = true;      // Disable physics interactions
         Time.timeScale = 0;         // Pause the game
         AudioManager.instance.level1Music.Stop();
         AudioManager.instance.level2Music.Stop();

@@ -67,6 +67,13 @@ public class EnemigoSalud : MonoBehaviour
                 animator.SetTrigger("RecibirGolpe");
                 StartCoroutine(BlinkEffect());
             }
+            else if (enemyType == EnemyType.Skeleton)
+            {
+                AudioManager.instance.PlayAudio(AudioManager.instance.oscuroHit);
+                enemy.healthPoints = Mathf.Max(enemy.healthPoints - damage, 0);
+                animator.SetTrigger("RecibirGolpe");
+                StartCoroutine(BlinkEffect());
+            }
             else
             {
                 // Comportamiento para enemigos regulares
