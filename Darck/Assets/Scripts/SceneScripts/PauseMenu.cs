@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         isPaused = false;

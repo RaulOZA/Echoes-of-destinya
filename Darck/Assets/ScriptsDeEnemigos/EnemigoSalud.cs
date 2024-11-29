@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class EnemigoSalud : MonoBehaviour
 {
     public enum EnemyType { Regular, Skeleton, Necromancer, Boss } // Tipos de enemigos
-    [SerializeField] public EnemyType enemyType;
+    [SerializeField] private EnemyType enemyType;
 
     public EnemigosGene enemy;
-    public Animator animator;
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
-    public bool isDead = false;
+    private bool isDead = false;
     private bool canReceiveDamage = true;
     [SerializeField] private float knockbackForce = 5f;
     [SerializeField] private float invulnerabilityTime = 1f;
@@ -25,9 +25,6 @@ public class EnemigoSalud : MonoBehaviour
     [SerializeField] private float meleeAttackRange = 2.0f; // Rango de ataque cuerpo a cuerpo del jefe
     [SerializeField] private Transform player; // Referencia al jugador
     private float lastAttackTime;
-
-    [Header("Puntos")]
-    [SerializeField] private int scorePoints = 10; // Puntos otorgados al morir este enemigo
 
     private void Start()
     {
@@ -64,6 +61,19 @@ public class EnemigoSalud : MonoBehaviour
                 // Comportamiento para el jefe
                 TakeBossDamage(damage);
             }
+            else if (enemyType == EnemyType.Regular) {
+                AudioManager.instance.PlayAudio(AudioManager.instance.oscuroHit);
+                enemy.healthPoints = Mathf.Max(enemy.healthPoints - damage, 0);
+                animator.SetTrigger("RecibirGolpe");
+                StartCoroutine(BlinkEffect());
+            }
+            else if (enemyType == EnemyType.Skeleton)
+            {
+                AudioManager.instance.PlayAudio(AudioManager.instance.oscuroHit);
+                enemy.healthPoints = Mathf.Max(enemy.healthPoints - damage, 0);
+                animator.SetTrigger("RecibirGolpe");
+                StartCoroutine(BlinkEffect());
+            }
             else
             {
                 // Comportamiento para enemigos regulares
@@ -86,7 +96,7 @@ public class EnemigoSalud : MonoBehaviour
         }
     }
 
-    public void TakeBossDamage(float damage)
+    private void TakeBossDamage(float damage)
     {
         currentHealth -= damage;
 
@@ -181,75 +191,32 @@ public class EnemigoSalud : MonoBehaviour
         canReceiveDamage = true;
     }
 
-    public void RecibirDaño(int daño, bool esPoderFuego)
+    private IEnumerator DeathSequence()
     {
-        if (isDead) return;
-
-        // Resta vida al enemigo
-        enemy.healthPoints -= daño;
-        enemy.healthPoints = Mathf.Max(enemy.healthPoints, 0);
-
-        Debug.Log($"{gameObject.name} recibió daño. Vida restante: {enemy.healthPoints}");
-
-        // Si la vida llega a 0, inicia la secuencia de muerte
-        if (enemy.healthPoints <= 0)
-        {
-            StartCoroutine(DeathSequence());
-        }
-    }
-
-    public IEnumerator DeathSequence()
-    {
-        if (isDead) yield break; // Prevenir múltiples ejecuciones
         isDead = true;
+        animator.SetTrigger("MuerteEnemigo");
 
-        Debug.Log($"{gameObject.name} inició la secuencia de muerte.");
-
-        // Detener movimiento
-        if (rb != null)
+        if (enemyType == EnemyType.Boss)
         {
-            rb.velocity = Vector2.zero;
-            Debug.Log("Movimiento detenido.");
+            Debug.Log("El jefe ha muerto");
+        }
+        else
+        {
+            Debug.Log("Enemigo regular muerto");
         }
 
-        // Desactivar colisionadores
-        Collider2D[] colliders = GetComponents<Collider2D>();
-        foreach (var collider in colliders)
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        if (enemyType == EnemyType.Boss)
         {
-            collider.enabled = false;
-            Debug.Log($"Colisionador {collider.name} desactivado.");
+            Destroy(gameObject); // Elimina al jefe
         }
-
-        // Desactivar scripts
-        MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
-        foreach (var script in scripts)
+        else
         {
-            if (script != this) script.enabled = false;
-            Debug.Log($"Script {script.GetType().Name} desactivado.");
+            Destroy(gameObject); // Elimina al enemigo regular
         }
-
-        // Reproducir animación de muerte
-        if (animator != null)
-        {
-            animator.SetTrigger("MuerteEnemigo");
-            yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-        }
-
-        // Agregar puntos al GameManager
-        GameManager.instance.AddScore(scorePoints);
-
-        // Eliminar hijos antes de destruir el enemigo
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
-        }
-        Debug.Log("Hijos eliminados.");
-
-        // Destruir el enemigo
-        Destroy(gameObject);
-        Debug.Log($"{gameObject.name} fue destruido.");
     }
-
 
     private void OnDrawGizmosSelected()
     {
